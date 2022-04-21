@@ -1,9 +1,14 @@
 import './App.css';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios'
+import NewTask  from './components/NewTask';
+import TDList from './components/TDList';
+
 
 function App() {
   const [getMessage, setGetMessage] = useState({})
+  const [eventInput, setEventInput] = useState("");
+  const [td, setTD] = useState([]);
 
   useEffect(()=>{
     axios.get('http://localhost:5000/hello').then(response => {
@@ -22,6 +27,8 @@ function App() {
         :
         <h3>LOADING</h3>}
       </div>
+      <NewTask eventInput={eventInput} td={td} setTD={setTD} setEventInput={setEventInput}/>
+      <TDList  setTD={setTD} td={td}/>
     </div>
   );
 }
